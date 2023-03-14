@@ -6,8 +6,15 @@ version: '3.7'
 services:
   greengrass:
     init: true
+    volumes:
+      - /home/ubuntu/aws-greengrass-docker/.aws/:/root/.aws/:ro
     build:
       context: .
       dockerfile: Dockerfile
     container_name: aws-iot-greengrass
     image: x86_64/aws-iot-greengrass:2.5.4
+    ports:
+      - "8443:8443"
+      - "443:443"
+    environment:
+      - PROVISION=true

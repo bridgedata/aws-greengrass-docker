@@ -18,17 +18,16 @@ parse_options() {
 	# If provision is true
 	if [ ${PROVISION} = "true" ]; then
 
-		if [ ! -f "/root/.aws/credentials" ] && ([[ -z "${AWS_ACCESS_KEY_ID}" ]] || [[ -z "${AWS_SECRET_ACCESS_KEY}" ]] || [[ -z "${AWS_SESSION_TOKEN}" ]]); then
-			echo "Provision is set to true, but credentials not found, neither file exist at /root/.aws/credentials nor set in environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN) . Please attach credentials and retry."
-			exit 1
-		fi
+		#if [ ! -f "/root/.aws/credentials" ] && ([[ -z "${AWS_ACCESS_KEY_ID}" ]] || [[ -z "${AWS_SECRET_ACCESS_KEY}" ]] || [[ -z "${AWS_SESSION_TOKEN}" ]]); then
+		#	echo "Provision is set to true, but credentials not found, neither file exist at /root/.aws/credentials nor set in environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN) . Please attach credentials and retry."
+		#	exit 1
+		#fi
 
 		# If thing name is specified, add optional argument
 		# If not specified, reverts to default of "GreengrassV2IotThing_" plus a random UUID.
 		if [ ${THING_NAME} != default_thing_name ]; then
 		    OPTIONS="${OPTIONS} --thing-name ${THING_NAME}"
 
-		    
 		fi
 		# If thing group name is specified, add optional argument
 		if [ ${THING_GROUP_NAME} != default_thing_group_name ]; then
